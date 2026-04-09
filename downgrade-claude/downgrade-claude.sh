@@ -33,5 +33,7 @@ echo "[5/5] Verifying..."
 echo "claude path: $(readlink -f "${HOME}/.local/bin/claude" || true)"
 echo "claude version: $(claude --version)"
 echo "DISABLE_AUTOUPDATER: $(jq -r '.env.DISABLE_AUTOUPDATER // "missing"' "${SETTINGS_FILE}")"
+echo "CLAUDE_CODE_DISABLE_1M_CONTEXT: $(jq -r '.env.CLAUDE_CODE_DISABLE_1M_CONTEXT // "missing"' "${SETTINGS_FILE}")"
+echo "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: $(jq -r '.env.CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING // "missing"' "${SETTINGS_FILE}")"
 
 echo "Done."

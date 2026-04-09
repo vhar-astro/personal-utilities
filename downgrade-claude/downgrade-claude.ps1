@@ -32,7 +32,14 @@ $obj | ConvertTo-Json -Depth 100 | Set-Content -Path $SettingsFile -Encoding UTF
 
 Write-Host "[4/4] Verifying..."
 $ver = claude --version
-$disabled = ((Get-Content -Path $SettingsFile -Raw | ConvertFrom-Json).env.DISABLE_AUTOUPDATER)
+$envObj = (Get-Content -Path $SettingsFile -Raw | ConvertFrom-Json).env
+$disabled = $envObj.DISABLE_AUTOUPDATER
+$disable1M = $envObj.CLAUDE_CODE_DISABLE_1M_CONTEXT
+$disableAdaptive = $envObj.CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING
 Write-Host "claude version: $ver"
 Write-Host "DISABLE_AUTOUPDATER: $disabled"
+Write-Host "CLAUDE_CODE_DISABLE_1M_CONTEXT: $disable1M"
+Write-Host "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING: $disableAdaptive"
 Write-Host "Done."
+Write-Host ""
+Read-Host -Prompt "Press Enter to exit"

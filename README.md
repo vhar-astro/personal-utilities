@@ -19,3 +19,12 @@ Scripts (`downgrade-claude/downgrade-claude.ps1` for Windows/PowerShell and `dow
 - **`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`** — Disables the 1M-token extended context window. Useful if you want predictable, smaller context sizes (and the cost/latency profile that comes with them) instead of having Claude Code opportunistically expand context on supported models.
 
 - **`CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1`** — Disables adaptive/automatic extended thinking. With this flag set, Claude Code will not dynamically decide when to engage extended thinking, giving you more consistent and predictable behavior across turns.
+
+### Reverting
+
+If you want to undo the downgrade, use the companion revert scripts (`downgrade-claude/revert-downgrade-claude.ps1` for Windows/PowerShell and `downgrade-claude/revert-downgrade-claude.sh` for Unix shells). They:
+
+1. Reinstall Claude Code at `@latest` via npm, re-enabling normal version updates.
+2. Remove `DISABLE_AUTOUPDATER`, `CLAUDE_CODE_DISABLE_1M_CONTEXT`, and `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING` from the `env` section of `~/.claude/settings.json` (and drop the `env` key entirely if it ends up empty), restoring default runtime behavior.
+3. (Unix only) Repoint `~/.local/bin/claude` to the freshly installed npm binary.
+4. Verify the installed version and that the environment variables are gone.

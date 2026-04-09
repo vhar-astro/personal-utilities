@@ -19,7 +19,7 @@ if (-not (Test-Path $SettingsFile)) {
 Write-Host "[3/4] Disabling Claude auto-updater in settings..."
 $jsonRaw = Get-Content -Path $SettingsFile -Raw
 if ([string]::IsNullOrWhiteSpace($jsonRaw)) { $jsonRaw = "{}" }
-$obj = $jsonRaw | ConvertFrom-Json -Depth 100
+$obj = $jsonRaw | ConvertFrom-Json
 
 if (-not $obj.env) {
   $obj | Add-Member -MemberType NoteProperty -Name env -Value ([pscustomobject]@{}) -Force
@@ -30,7 +30,7 @@ $obj | ConvertTo-Json -Depth 100 | Set-Content -Path $SettingsFile -Encoding UTF
 
 Write-Host "[4/4] Verifying..."
 $ver = claude --version
-$disabled = ((Get-Content -Path $SettingsFile -Raw | ConvertFrom-Json -Depth 100).env.DISABLE_AUTOUPDATER)
+$disabled = ((Get-Content -Path $SettingsFile -Raw | ConvertFrom-Json).env.DISABLE_AUTOUPDATER)
 Write-Host "claude version: $ver"
 Write-Host "DISABLE_AUTOUPDATER: $disabled"
 Write-Host "Done."

@@ -25,6 +25,8 @@ if (-not $obj.env) {
   $obj | Add-Member -MemberType NoteProperty -Name env -Value ([pscustomobject]@{}) -Force
 }
 $obj.env | Add-Member -MemberType NoteProperty -Name DISABLE_AUTOUPDATER -Value "1" -Force
+$obj.env | Add-Member -MemberType NoteProperty -Name CLAUDE_CODE_DISABLE_1M_CONTEXT -Value "1" -Force
+$obj.env | Add-Member -MemberType NoteProperty -Name CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING -Value "1" -Force
 
 $obj | ConvertTo-Json -Depth 100 | Set-Content -Path $SettingsFile -Encoding UTF8
 

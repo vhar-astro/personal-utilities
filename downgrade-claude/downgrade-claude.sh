@@ -16,7 +16,7 @@ fi
 
 echo "[3/5] Disabling Claude auto-updater in settings..."
 tmp="$(mktemp)"
-jq '.env = ((.env // {}) + {"DISABLE_AUTOUPDATER":"1"})' "${SETTINGS_FILE}" > "${tmp}"
+jq '.env = ((.env // {}) + {"DISABLE_AUTOUPDATER":"1","CLAUDE_CODE_DISABLE_1M_CONTEXT":"1","CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING":"1"})' "${SETTINGS_FILE}" > "${tmp}"
 mv "${tmp}" "${SETTINGS_FILE}"
 
 echo "[4/5] Repointing ~/.local/bin/claude to npm-installed CLI..."

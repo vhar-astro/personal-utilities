@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TARGET_VERSION="${1:-2.1.68}"
+TARGET_VERSION="${1:-2.1.63}"
 PACKAGE="@anthropic-ai/claude-code@${TARGET_VERSION}"
 SETTINGS_FILE="${HOME}/.claude/settings.json"
 
